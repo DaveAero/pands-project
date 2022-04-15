@@ -34,55 +34,49 @@ irisVersicolour = irisData[irisData['FlowerClass'] == "Iris-versicolor"]
 irisVirginica = irisData[irisData['FlowerClass'] == "Iris-virginica"]
 #print(irisSetosa)
 
-# All data
-plt.subplot(2, 1, 1)
-plt.scatter(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], color='r')
-plt.scatter(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], color='g')
-plt.scatter(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], color='b')
-z = np.polyfit(irisData["SepalLength"], irisData["SepalWidth"], 1)
-p = np.poly1d(z)
-plt.plot(irisData["SepalLength"],p(irisData["SepalLength"]), color='black')
-plt.xticks([4,5,6,7,8])
-plt.yticks([2,3,4,5])
-plt.title("Iris Data", size = 20, color = 'black')
-plt.xlabel("Sepal Length", size = 12, color = 'black')
-plt.ylabel("Sepal Width", size = 12, color = 'black')
 
-# Iris Setosa
-plt.subplot(2, 3, 4)
-plt.scatter(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], color='r')
-z = np.polyfit(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], 1)
-p = np.poly1d(z)
-plt.plot(irisSetosa["SepalLength"],p(irisSetosa["SepalLength"]),"black")
-plt.xticks([4,5,6,7,8])
-plt.yticks([2,3,4,5])
-plt.title("Iris Setosa", size = 15, color = 'black')
-plt.xlabel("Sepal Length", size = 9, color = 'black')
-plt.ylabel("Sepal Width", size = 9, color = 'black')
+# funtion for subplotting
+def subplotter(xAxis, yAxis):
+    plt.subplot(2, 1, 1)
+    plt.scatter(irisSetosa[xAxis], irisSetosa[yAxis], color='r')
+    plt.scatter(irisVersicolour[xAxis], irisVersicolour[yAxis], color='g')
+    plt.scatter(irisVirginica[xAxis], irisVirginica[yAxis], color='b')
+    z = np.polyfit(irisData[xAxis], irisData[yAxis], 1)
+    p = np.poly1d(z)
+    plt.plot(irisData[xAxis],p(irisData[xAxis]), color='black')
+    plt.yticks([0,1,2,3,4,5])
+    plt.title("Iris Data", size = 20, color = 'black')
+    plt.xlabel(xAxis, size = 12, color = 'black')
+    plt.ylabel(yAxis, size = 12, color = 'black')
 
-# Iris Versicolour
-plt.subplot(2, 3, 5)
-plt.scatter(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], color='g')
-z = np.polyfit(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], 1)
-p = np.poly1d(z)
-plt.plot(irisVersicolour["SepalLength"],p(irisVersicolour["SepalLength"]),"black")
-plt.xticks([4,5,6,7,8])
-plt.yticks([2,3,4,5])
-plt.title("Iris Versicolour", size = 15, color = 'black')
-plt.xlabel("Sepal Length", size = 9, color = 'black')
-plt.ylabel("Sepal Width", size = 9, color = 'black')
+    # function for subpots
+    def subplotterbot(flower, xAxis, yAxis, graphcolor, flowerName):
+        plt.scatter(flower[xAxis], flower[yAxis], color= graphcolor)
+        z = np.polyfit(flower[xAxis], flower[yAxis], 1)
+        p = np.poly1d(z)
+        plt.plot(flower[xAxis],p(flower[xAxis]),"black")
+        plt.yticks([0,1,2,3,4,5])
+        plt.title(flowerName, size = 15, color = 'black')
+        plt.xlabel("Sepal Length", size = 9, color = 'black')
+        plt.ylabel("Sepal Width", size = 9, color = 'black')
 
-# Iris Virginica
-plt.subplot(2, 3, 6)
-plt.scatter(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], color='b')
-z = np.polyfit(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], 1)
-p = np.poly1d(z)
-plt.plot(irisVirginica["SepalLength"],p(irisVirginica["SepalLength"]),"black")
-plt.xticks([4,5,6,7,8])
-plt.yticks([2,3,4,5])
-plt.title("Iris Virginica", size = 15, color = 'black')
-plt.xlabel("Sepal Length", size = 9, color = 'black')
-plt.ylabel("Sepal Width", size = 9, color = 'black')
 
-plt.tight_layout()
-plt.show()
+    # Iris Setosa subplot
+    plt.subplot(2, 3, 4)
+    subplotterbot(irisSetosa, xAxis, yAxis, "r", "Iris Setosa")
+
+    # Iris Versicolour subplot
+    plt.subplot(2, 3, 5)
+    subplotterbot(irisVersicolour, xAxis, yAxis, "g", "Iris Versicolour")
+
+    # Iris Virginica subplot
+    plt.subplot(2, 3, 6)
+    subplotterbot(irisVirginica, xAxis, yAxis, 'b', "Iris Virginica")
+
+    plt.tight_layout()
+    plt.show()
+
+# Iris Data Subplot
+subplotter("SepalLength", "SepalWidth")
+
+subplotter("PetalLength", "PetalWidth")
