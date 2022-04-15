@@ -34,26 +34,55 @@ irisVersicolour = irisData[irisData['FlowerClass'] == "Iris-versicolor"]
 irisVirginica = irisData[irisData['FlowerClass'] == "Iris-virginica"]
 #print(irisSetosa)
 
+# All data
+plt.subplot(2, 1, 1)
+plt.scatter(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], color='r')
+plt.scatter(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], color='g')
+plt.scatter(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], color='b')
+z = np.polyfit(irisData["SepalLength"], irisData["SepalWidth"], 1)
+p = np.poly1d(z)
+plt.plot(irisData["SepalLength"],p(irisData["SepalLength"]), color='black')
+plt.xticks([4,5,6,7,8])
+plt.yticks([2,3,4,5])
+plt.title("Iris Data", size = 20, color = 'black')
+plt.xlabel("Sepal Length", size = 12, color = 'black')
+plt.ylabel("Sepal Width", size = 12, color = 'black')
 
-
+# Iris Setosa
+plt.subplot(2, 3, 4)
 plt.scatter(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], color='r')
 z = np.polyfit(irisSetosa["SepalLength"], irisSetosa["SepalWidth"], 1)
 p = np.poly1d(z)
-plt.plot(irisSetosa["SepalLength"],p(irisSetosa["SepalLength"]),"r-")
+plt.plot(irisSetosa["SepalLength"],p(irisSetosa["SepalLength"]),"black")
+plt.xticks([4,5,6,7,8])
+plt.yticks([2,3,4,5])
+plt.title("Iris Setosa", size = 15, color = 'black')
+plt.xlabel("Sepal Length", size = 9, color = 'black')
+plt.ylabel("Sepal Width", size = 9, color = 'black')
 
+# Iris Versicolour
+plt.subplot(2, 3, 5)
 plt.scatter(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], color='g')
 z = np.polyfit(irisVersicolour["SepalLength"], irisVersicolour["SepalWidth"], 1)
 p = np.poly1d(z)
-plt.plot(irisVersicolour["SepalLength"],p(irisVersicolour["SepalLength"]),"g-")
+plt.plot(irisVersicolour["SepalLength"],p(irisVersicolour["SepalLength"]),"black")
+plt.xticks([4,5,6,7,8])
+plt.yticks([2,3,4,5])
+plt.title("Iris Versicolour", size = 15, color = 'black')
+plt.xlabel("Sepal Length", size = 9, color = 'black')
+plt.ylabel("Sepal Width", size = 9, color = 'black')
 
+# Iris Virginica
+plt.subplot(2, 3, 6)
 plt.scatter(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], color='b')
 z = np.polyfit(irisVirginica["SepalLength"], irisVirginica["SepalWidth"], 1)
 p = np.poly1d(z)
-plt.plot(irisVirginica["SepalLength"],p(irisVirginica["SepalLength"]),"b-")
+plt.plot(irisVirginica["SepalLength"],p(irisVirginica["SepalLength"]),"black")
+plt.xticks([4,5,6,7,8])
+plt.yticks([2,3,4,5])
+plt.title("Iris Virginica", size = 15, color = 'black')
+plt.xlabel("Sepal Length", size = 9, color = 'black')
+plt.ylabel("Sepal Width", size = 9, color = 'black')
 
-z = np.polyfit(irisData["SepalLength"], irisData["SepalWidth"], 1)
-p = np.poly1d(z)
-plt.plot(irisData["SepalLength"],p(irisData["SepalLength"]))
-
-
+plt.tight_layout()
 plt.show()
