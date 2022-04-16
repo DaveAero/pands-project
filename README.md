@@ -11,7 +11,8 @@ This program is used to analyis Fisher's Iris Database. This database details 15
 
 Sepals and Petals are found on flowering plants. I would think an petal is easy for all to visualise, this is the flowering leaf of a plant which may have adopted attracting colours to distinguish itself, such as the red rose petals or the yellow sunflower petals. The Sepal again is a part uniquie to flowering plants, the role of the sepal is to protect the delicate flowering petals until:
   1. the plant is mature enought to flower.
-  2. the enviornmental conditions are sufficent for the plant to flower
+  2. the enviornmental conditions are sufficent for the plant to flower.
+
 Think of flowering plants with a bud ready to burst to life with petals, the protective shell you see is made of these sepals. When the time comes and the flower opens to reveal the petals, the sepals pull back to allow the petals to open fully.
 
 ## Investigation into database
