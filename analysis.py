@@ -8,9 +8,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #impoting of the data set
-irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])
-#print(irisData.head())
-
 #Attribute Information:
 #   1. sepal length in cm
 #   2. sepal width in cm
@@ -20,19 +17,35 @@ irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'P
 #      -- Iris Setosa
 #      -- Iris Versicolour
 #      -- Iris Virginica
-
+irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])
 #print(irisData.head())
 
-# Sererating Followes into subsets of data for individual analysis
+# Sererating Flowers into subsets of data for individual analysis
 irisSetosa = irisData[irisData['FlowerClass'] == "Iris-setosa"]
 irisVersicolour = irisData[irisData['FlowerClass'] == "Iris-versicolor"]
 irisVirginica = irisData[irisData['FlowerClass'] == "Iris-virginica"]
 #print(irisSetosa.head())
 
+# Setting up a blank text file
+filename = "Outputs\TextSummary\Analysis.txt"
+f = open(filename,"w")
+f.close()
+
 ###################### DEFINING FUNCTIONS ######################
+# FUnction for outputting a summary to a text file
+def textOutput(text, title):
+    with open(filename, "a") as f:
+        # write takes a string so we need to convert
+        f.write(str(title))
+        f.write(str("\n"))
+        f.write(str(text))
+        f.write(str("\n"))
+        f.write(str("-----"))
+        f.write(str("\n"))
+        f.write(str("-----"))
+        f.write(str("\n"))
 
-
-#single variable histogram summaries
+# function for outputting single variable histogram summaries
 def variableHist(xAxis):
     plt.subplot(2, 1, 1)
     plt.hist([irisSetosa[xAxis], irisVersicolour[xAxis], irisVirginica[xAxis]], bins= 15, label=['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'], color = ["cornflowerblue", "mediumseagreen", "firebrick"])
@@ -40,7 +53,7 @@ def variableHist(xAxis):
     plt.xlabel(xAxis, size = 12, color = 'black')
     plt.grid(axis = 'y')
 
-    # function for subpots
+    # function for subpots on the second row
     def subvariableHist(flower, xAxis, graphcolor, flowerName):
         plt.hist(flower[xAxis], bins= 10, color= graphcolor)
         plt.title(flowerName, size = 15, color = 'black')
@@ -59,11 +72,12 @@ def variableHist(xAxis):
     plt.subplot(2, 3, 6)
     subvariableHist(irisVirginica, xAxis, "firebrick", "Iris Virginica")
 
+    # outputting the histograms to a saved .png
     plt.tight_layout()
     plt.savefig('Outputs\Histograms\{}.png'.format(col))
     plt.show()
 
-# funtion for subplotting
+# funtion for outputing a scatter plot of each variable pair
 def subplotter(xAxis, yAxis):
     plt.subplot(2, 1, 1)
     plt.scatter(irisSetosa[xAxis], irisSetosa[yAxis], color="cornflowerblue")
@@ -77,7 +91,7 @@ def subplotter(xAxis, yAxis):
     plt.xlabel(xAxis, size = 12, color = 'black')
     plt.ylabel(yAxis, size = 12, color = 'black')
 
-    # function for subpots
+    # function for subpots on the second row
     def subplotterbot(flower, xAxis, yAxis, graphcolor, flowerName):
         plt.scatter(flower[xAxis], flower[yAxis], color= graphcolor)
         z = np.polyfit(flower[xAxis], flower[yAxis], 1)
@@ -100,6 +114,7 @@ def subplotter(xAxis, yAxis):
     plt.subplot(2, 3, 6)
     subplotterbot(irisVirginica, xAxis, yAxis, "firebrick", "Iris Virginica")
 
+    # Outputting the Scatter plots and saving as a .png
     plt.tight_layout()
     plt.savefig('Outputs\ScatterPlots\{} Vs {}.png'.format(xAxis, yAxis))
     plt.show()
@@ -107,19 +122,22 @@ def subplotter(xAxis, yAxis):
 ###################### MAIN CODE ######################
 # 1. 
 # Creating a text summary for each variable
-print("The minimum is {}".format(min(irisData['SepalLength'])))
+textOutput(irisData.describe(), "Summary of Iris Data set")
+textOutput(irisSetosa.describe(), "Summary of Iris Setosa subset")
+textOutput(irisVersicolour.describe(), "Summary of Iris Versicolour subset")
+textOutput(irisVirginica.describe(), "Summary of Iris Virginica subset")
 
 # 2.
 # Creating histograms for each variable
-#for col in irisData.columns:
-#    variableHist(col)
+for col in irisData.columns:
+    variableHist(col)
 
 # 3.
 # Creating scatter potls for each pair of variables
-#subplotter("SepalLength", "SepalWidth")
+subplotter("SepalLength", "SepalWidth")
 
-#subplotter("PetalLength", "PetalWidth")
+subplotter("PetalLength", "PetalWidth")
 
-#subplotter("SepalLength", "PetalWidth")
+subplotter("SepalLength", "PetalWidth")
 
-#subplotter("PetalLength", "SepalWidth")
+subplotter("PetalLength", "SepalWidth")
