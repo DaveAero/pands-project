@@ -48,7 +48,7 @@ def textOutput(text, title):
 # function for outputting single variable histogram summaries
 def variableHist(xAxis):
     plt.subplot(2, 1, 1)
-    plt.hist([irisSetosa[xAxis], irisVersicolour[xAxis], irisVirginica[xAxis]], bins= 15, label=['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'], color = ["cornflowerblue", "mediumseagreen", "firebrick"])
+    plt.hist([irisSetosa[xAxis], irisVersicolour[xAxis], irisVirginica[xAxis]], bins= 30, label=['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'], color = ["cornflowerblue", "mediumseagreen", "firebrick"])
     plt.title(xAxis, size = 15, color = 'black')
     plt.xlabel(xAxis, size = 12, color = 'black')
     plt.grid(axis = 'y')
@@ -61,15 +61,15 @@ def variableHist(xAxis):
         plt.grid(axis = 'y')
 
     # Iris Setosa subplot
-    plt.subplot(2, 3, 4)
+    plt.subplot(3, 3, 7)
     subvariableHist(irisSetosa, xAxis, "cornflowerblue", "Iris Setosa")
 
     # Iris Versicolour subplot
-    plt.subplot(2, 3, 5)
+    plt.subplot(3, 3, 8)
     subvariableHist(irisVersicolour, xAxis, "mediumseagreen", "Iris Versicolour")
 
     # Iris Virginica subplot
-    plt.subplot(2, 3, 6)
+    plt.subplot(3, 3, 9)
     subvariableHist(irisVirginica, xAxis, "firebrick", "Iris Virginica")
 
     # outputting the histograms to a saved .png
@@ -103,15 +103,15 @@ def subplotter(xAxis, yAxis):
         plt.ylabel(yAxis, size = 9, color = 'black')
 
     # Iris Setosa subplot
-    plt.subplot(2, 3, 4)
+    plt.subplot(3, 3, 7)
     subplotterbot(irisSetosa, xAxis, yAxis, "cornflowerblue", "Iris Setosa")
 
     # Iris Versicolour subplot
-    plt.subplot(2, 3, 5)
+    plt.subplot(3, 3, 8)
     subplotterbot(irisVersicolour, xAxis, yAxis, "mediumseagreen", "Iris Versicolour")
 
     # Iris Virginica subplot
-    plt.subplot(2, 3, 6)
+    plt.subplot(3, 3, 9)
     subplotterbot(irisVirginica, xAxis, yAxis, "firebrick", "Iris Virginica")
 
     # Outputting the Scatter plots and saving as a .png
@@ -122,22 +122,47 @@ def subplotter(xAxis, yAxis):
 ###################### MAIN CODE ######################
 # 1. 
 # Creating a text summary for each variable
-textOutput(irisData.describe(), "Summary of Iris Data set")
-textOutput(irisSetosa.describe(), "Summary of Iris Setosa subset")
-textOutput(irisVersicolour.describe(), "Summary of Iris Versicolour subset")
-textOutput(irisVirginica.describe(), "Summary of Iris Virginica subset")
+#textOutput(irisData.describe(), "Summary of Iris Data set")
+#textOutput(irisSetosa.describe(), "Summary of Iris Setosa subset")
+#textOutput(irisVersicolour.describe(), "Summary of Iris Versicolour subset")
+#textOutput(irisVirginica.describe(), "Summary of Iris Virginica subset")
 
 # 2.
 # Creating histograms for each variable
-for col in irisData.columns:
-    variableHist(col)
+#for col in irisData.columns:
+#    variableHist(col)
 
 # 3.
 # Creating scatter potls for each pair of variables
-subplotter("SepalLength", "SepalWidth")
+#subplotter("SepalLength", "SepalWidth")
 
-subplotter("PetalLength", "PetalWidth")
+#subplotter("PetalLength", "PetalWidth")
 
-subplotter("SepalLength", "PetalWidth")
+#subplotter("SepalLength", "PetalWidth")
 
-subplotter("PetalLength", "SepalWidth")
+#subplotter("PetalLength", "SepalWidth")
+
+# 4. Extra
+# Analysis of the relationship between petal dimetions and the sepal relationships
+flowers = ["irisSetosa", "irisVersicolour", "irisVirginica"]
+
+irisDataPetalRatio = irisData["PetalLength"] / irisData["PetalWidth"]
+irisDataSepalRatio = irisData["SepalLength"] / irisData["SepalWidth"]
+
+irisSetosaPetalRatio = irisSetosa["PetalLength"] / irisSetosa["PetalWidth"]
+irisSetosaSepalRatio = irisSetosa["SepalLength"] / irisSetosa["SepalWidth"]
+
+irisVersicolourPetalRatio = irisVersicolour["PetalLength"] / irisVersicolour["PetalWidth"]
+irisVersicolourSepalRatio = irisVersicolour["SepalLength"] / irisVersicolour["SepalWidth"]
+
+irisVirginicaPetalRatio = irisVirginica["PetalLength"] / irisVirginica["PetalWidth"]
+irisVirginicaSepalRatio = irisVirginica["SepalLength"] / irisVirginica["SepalWidth"]
+
+plt.scatter(irisSetosaPetalRatio, irisSetosaSepalRatio, color="cornflowerblue")
+plt.scatter(irisVersicolourPetalRatio, irisVersicolourSepalRatio, color= "mediumseagreen")
+plt.scatter(irisVirginicaPetalRatio, irisVirginicaSepalRatio, color= "firebrick")
+
+plt.title("PetalRatio Vs SepalRatio", size = 20, color = 'black')
+plt.xlabel("PetalRatio", size = 12, color = 'black')
+plt.ylabel("SepalRatio", size = 12, color = 'black')
+plt.show()
