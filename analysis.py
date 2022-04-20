@@ -117,7 +117,7 @@ def subplotter(xAxis, yAxis):
 
     # Outputting the Scatter plots and saving as a .png
     plt.tight_layout()
-    plt.savefig('Outputs\ScatterPlots\{} Vs {}.png'.format(xAxis, yAxis))
+    plt.savefig('Outputs\ScatterPlots\{}Vs{}.png'.format(xAxis, yAxis))
     plt.show()
 
 ###################### MAIN CODE ######################
