@@ -24,6 +24,11 @@ As I regularly found myself wanting to analyse each of the 3 sub class of iris f
 
 Finally, it is important to complete these steps that the python terminal knows where to locate the iris.data file. To accomplish this first we must ensure the python terminal is in the correct folder location. Before running the analysis.py program I navigate to the folder where this program is stored. Secondly, when loading the iris file we must give the file path from the current folder to the iris.data file. In this case the file path is data\iris.data.
 
+## Investigation into database
+the data analysis will take 2 approches on this database.
+  1. An analysis of the Iris plant specties to find trends accross all Iris plant variations
+  2. An analysis of each sub class of Iris plant, to find trends and identify areas where these plants differ. The 3 plant classes to be investigated are Iris Setosa, Iris Versicolor & Iris Virginica
+
 ### The first text analysis
 Text analysis is a very usefull tool to very quickly get an understanding of the database we are working with. The first test used was the head() function, this is used to see the top 5 rows of a database. The result of this can be printed to the command line to see the result. This simple test was carried out on all 4 of the databases now created (irisData, irisSetosa, irisVersicolour & irisVirginica). The complete function is writen as so: $print(irisData.head())
 
@@ -64,48 +69,27 @@ Confirming the histogram outputed as desired, I then saved this as a .jpeg using
 ### Scatter plots
 Having discovered the subplots were useful for the histograms, I decieded to keep the subplots for the scatter plots. 
 
-
-## Investigation into database
-the data analysis will take 2 approches on this database.
-  1. An analysis of the Iris plant specties to find trends accross all Iris plant variations
-  2. An analysis of each sub class of Iris plant, to find trends and identify areas where these plants differ. The 3 plant classes to be investigated are Iris Setosa, Iris Versicolor & Iris Virginica
+![](Outputs/ScatterPlots/PetalLengthVsPetalWidth.png)
 
 
 
-## Data Analysis
-### Iris plant Text Summary
 
 
-inital impresions reviewing this data shows:
-  - The Sepal has a larger mean lenth than the Petal
-  - The Sepal has a larger mean width than the Petal
-  - The Petal Length has the largest standard deviation, showing it has the largest spread of datapoint.
-  - The Sepal Width has the smallest standard deviation, showing it has the least  spread of datapoint.
-
-This text analysis is useful, but the data can be more intuitively understood through graphing of the data for visualisation of the data.
-
-### Iris plant Histrogram summary
 
 
-From the above histogram we can visualise the large spread of data observed in the text summary, ranging between 1 and 7 cm. Observations from this Histogram.
-  - Iris Setosa has the smallest mean Petal Lenght, and is far from the range for the Iris Versicolour & Iris Virginica. Iris Setosa also has has the smallest spread of data, or we could say it has the smallest standard deviation
-  - Iris Virgincia has the largest mean value for Petal Length. Iris Virgincia also has the largest spread of data meaning it has the largest standard deviation. 
-  - An inital hypothesis could be sugested here, that as the mean peatal lenght increases, the standard deviation for the spread of data increases in proportion to his.
 
-![](Outputs/Histograms/PetalWidth.png)
 
-Now looking at the Petal width.
-  - The Iris Setosa again has the smallest Mean value for the petal width.
-  - The Iris Virginica has the largest Mean value.
-  - Again the trend can be seen that the smallest mean value has the smallest Standard Deviation.
-  - following this, the largest mean value has the largest standard deviation.
 
-![](Outputs/Histograms/SepalLength.png)
 
-![](Outputs/Histograms/SepalWidth.png)
+
+
+
+
+
+
+
 
 ## Getting Started
-
 ### Executing program
 the analysis.py program requires data from the iris.data database. This data base is availabe at: https://archive.ics.uci.edu/ml/datasets/iris. To use this database with the analysis.py program, the database should be saved in a folder titled "data", making the file path from the program "data\iris.data".
 
