@@ -68,7 +68,7 @@ It is important here to confirm that the string entered into the logical test is
 Finally, it is important to complete these steps that the python terminal knows where to locate the iris.data file. To accomplish this first we must ensure the python terminal is in the correct folder location. Before running the analysis.py program I navigate to the folder where this program is stored. Secondly, when loading the iris file we must give the file path from the current folder to the iris.data file. In this case the file path is 
 
 ```
-data\iris.data.
+data\iris.data
 ```
 
 ## Investigation into database
