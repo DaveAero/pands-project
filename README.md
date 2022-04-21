@@ -4,7 +4,7 @@ This repository is my collection of work from the project as part of Programing 
 The work in this repository is my own, and was completed as part of my programming and scripting module. 
 
 ## Description
-In this data analysis we will be examining the relationship between the leanth and width dimentions of petals and septals for the Iris plant and for each of the 3 sub classes, 1. Iris Setosa, 2. Iris Versicolour, 3. Iris Virginica.
+In this data analysis we will be examining the relationship between the lenth and width dimentions of petals and septals for 150 Iris plant and for each of the 3 sub classes, 1. Iris Setosa, 2. Iris Versicolour, 3. Iris Virginica.
 
 ### Description of the Iris Database
 The database was created by R.A. Fisher in 1936, analysis.py is used to analyis Fisher's Iris Database using python. This database details 150 Iris flowers, split evenly into 3 sub species of Iris flower, Iris Setosa, Iris Versicolour & Iris Virginica. The database details 4 attributes for each flower, sepal length (cm), sepal width (cm), petal length (cm) & petal width (cm).
@@ -15,14 +15,61 @@ Sepals and Petals are found on flowering plants. I would think an petal is easy 
 
 Think of flowering plants with a bud ready to burst to life with petals, the protective shell you see is made of these sepals. When the time comes and the flower opens to reveal the petals, the sepals pull back to allow the petals to open fully.
 
+The iris database comes with the following discription of the variable to confirm what attribute is in which column:
+
+```
+Attribute Information:
+   1. sepal length in cm
+   2. sepal width in cm
+   3. petal length in cm
+   4. petal width in cm
+   5. class: 
+      -- Iris Setosa
+      -- Iris Versicolour
+      -- Iris Virginica
+```
+
+From this we know, column 1. to 4. contains data in cm. From a later test it was confirmed that these values are entered as floating point numbers. Column 5. contains the class of each flower, this column uses data type string.
+
 ### Loading the Iris Database 
-The data is now available online free for download from the references below. The data comes in a file called iris.data, for this data analysis we will be loading this file into python. The .data file type can be loaded as a CSV (comma-separated values) using the pandas module in python. So it is important to first tell python we will be using this modual, by importing it like this "$import pandas as pd". We can then use the read_csv function provided by the pandas modual, and save the database to a Python opject called irisData as so "$irisData =  pd.read_csv('data\iris.data')
+The data is now available online free for download from the references below. The data comes in a file called iris.data, for this data analysis we will be loading this file into python. The .data file type can be loaded as a CSV (comma-separated values) using the pandas module in python. So it is important to first tell python we will be using this modual, by importing it like this:
 
-the database is now available for data analysis! when examing the database, it was noticed that the column names were not part of the database, from the very first line there was data entries. This can casue issues as python interperites this first line as being the column names for the data below. To fix this the column names can be manually assigned as the CSV file is being loaded. This can be done by adding another argument to the read_csv function called names, this is then followed by the list of column names to be used. The fuction for loading data then becomes "$irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])". it is important to note here, the column names are all defined as string values using the quotation marks.
+```
+import pandas as pd
+```
 
-As I regularly found myself wanting to analyse each of the 3 sub class of iris flower, I found it was easier to creat individual pyhton objects for the data pertaining to each sub class. This was done using a logical test on the flower class column, the example I show is for the irisSetosa flower $irisData['FlowerClass'] == "Iris-setosa". This logical test is applied to the whole irisData database and the result was saved to a object called irisSetosa as so: $irisSetosa = irisData[irisData['FlowerClass'] == "Iris-setosa"]. It is important here to confirm that the string entered into the logical test is exactly correct as a small typo here would result in no data being saved to the object.
+We can then use the read_csv function provided by the pandas modual, and save the database to a Python opject called irisData as so
 
-Finally, it is important to complete these steps that the python terminal knows where to locate the iris.data file. To accomplish this first we must ensure the python terminal is in the correct folder location. Before running the analysis.py program I navigate to the folder where this program is stored. Secondly, when loading the iris file we must give the file path from the current folder to the iris.data file. In this case the file path is data\iris.data.
+```
+irisData =  pd.read_csv('data\iris.data')
+```
+
+the database is now available for data analysis! when examing the database, it was noticed that the column names were not part of the database, from the very first line there was data entries. This can casue issues as python interperites this first line as being the column names for the data below. To fix this the column names can be manually assigned as the CSV file is being loaded. This can be done by adding another argument to the read_csv function called names, this is then followed by the list of column names to be used. The fuction for loading data then becomes:
+
+```
+irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])
+```
+It is important to note here, the column names are all defined as string values using the quotation marks.
+
+As I regularly found myself wanting to analyse each of the 3 sub class of iris flower, I found it was easier to creat individual pyhton objects for the data pertaining to each sub class. This was done using a logical test on the flower class column, the example I show is for the irisSetosa flower:
+
+```
+irisData['FlowerClass'] == "Iris-setosa"
+```
+
+This logical test is applied to the whole irisData database and the result was saved to a object called irisSetosa as so:
+
+```
+irisSetosa = irisData[irisData['FlowerClass'] == "Iris-setosa"]
+```
+
+It is important here to confirm that the string entered into the logical test is exactly correct as a small typo here would result in no data being saved to the object.
+
+Finally, it is important to complete these steps that the python terminal knows where to locate the iris.data file. To accomplish this first we must ensure the python terminal is in the correct folder location. Before running the analysis.py program I navigate to the folder where this program is stored. Secondly, when loading the iris file we must give the file path from the current folder to the iris.data file. In this case the file path is 
+
+```
+data\iris.data.
+```
 
 ## Investigation into database
 the data analysis will take 2 approches on this database.
@@ -30,11 +77,17 @@ the data analysis will take 2 approches on this database.
   2. An analysis of each sub class of Iris plant, to find trends and identify areas where these plants differ. The 3 plant classes to be investigated are Iris Setosa, Iris Versicolor & Iris Virginica
 
 ### The first text analysis
-Text analysis is a very usefull tool to very quickly get an understanding of the database we are working with. The first test used was the head() function, this is used to see the top 5 rows of a database. The result of this can be printed to the command line to see the result. This simple test was carried out on all 4 of the databases now created (irisData, irisSetosa, irisVersicolour & irisVirginica). The complete function is writen as so: $print(irisData.head())
+Text analysis is a very usefull tool to very quickly get an understanding of the database we are working with. The first test used was the head() function, this is used to see the top 5 rows of a database. The result of this can be printed to the command line to see the result. This simple test was carried out on all 4 of the databases now created (irisData, irisSetosa, irisVersicolour & irisVirginica). The complete function is writen as so:
+
+```
+print(irisData.head())
+```
 
 Now having confirmed the database is working correctly I moved to a more detailed analysis of the IrisData, for this I used the .describe() function. This gives some usefull info such as Min, Max, Mean & Standard Devistion for each variable. The output of this is then saved to a text file so it can be reviewed at a later date. Running this code and having confirmed that the .txt file was created as expected, with the result of the .describe() function, we can see a summary for the whole iris database. This summary can be seen below.
 
 Summary of Iris Data set.
+
+```
         SepalLength   SepalWidth    PetalLength   PetalWidth
 count---150.000000----150.000000----150.000000----150.000000
 
@@ -51,6 +104,7 @@ min-----4.300000------2.000000------1.000000------0.100000
 75%-----6.400000------3.300000------5.100000------1.800000
 
 max-----7.900000------4.400000------6.900000------2.500000
+```
 
 I then set about adjusting the code used to become a function, so all 4 databases created could be passed through it in an efficent manner. The new function is called 4 times in the program, with each of the databases being passed through the describe() fuction and appended onto the text file. the result can be seen in Outputs\TextSummary\Analysis.txt
 
@@ -67,11 +121,14 @@ the upper subplot is given the input (2, 1, 1) to confirm there is 2 columns an 
 Confirming the histogram outputed as desired, I then saved this as a .jpeg using the matplotlib module. Having now wrote the code to output 1 histogram, I adjusted the code to become a function where each of the variables could be passed through the function to create a histogram that will be saved.
 
 ### Scatter plots
-Having discovered the subplots were useful for the histograms, I decieded to keep the subplots for the scatter plots. 
+Having discovered the subplots were useful for the histograms, I decieded to keep the subplots for the scatter plots. Again I followed the followed the methodology of first creating a scatter plot of 2 vaiables. I then set about re-writing that code into a fuction which can be used to pass combinations of vairables through, making the code more efficent and easier to manage.
+
+Coloring each flower class the same as the histogram to keep continuity. I also chose to add a trend line to each of the classes of flower and to the irisData set as a whole, to help easily identify trends or differences. The resulting scatter plots are saved to a new folder within the outputs folder.
 
 ![](Outputs/ScatterPlots/PetalLengthVsPetalWidth.png)
 
-
+### Additional analytsis
+Finally
 
 
 
@@ -121,3 +178,4 @@ Nil
 4. Saving to a .txt file https://www.pythontutorial.net/python-basics/python-write-text-file/
 5. Colours used for Histogram https://matplotlib.org/3.5.0/gallery/color/named_colors.html
 6. Creating subplots https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html
+7. How to get all pair combinations from a list https://www.geeksforgeeks.org/itertools-combinations-module-python-print-possible-combinations/
