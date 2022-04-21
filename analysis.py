@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 #      -- Iris Versicolour
 #      -- Iris Virginica
 irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])
-print(irisData.head())
+#print(irisData.head())
 
 # Sererating Flowers into subsets of data for individual analysis
 irisSetosa = irisData[irisData['FlowerClass'] == "Iris-setosa"]
@@ -181,6 +181,7 @@ plt.plot(irisVirginicaPetalRatio,p(irisVirginicaPetalRatio), color="firebrick")
 plt.title("PetalRatio Vs SepalRatio", size = 20, color = 'black')
 plt.xlabel("PetalRatio", size = 12, color = 'black')
 plt.ylabel("SepalRatio", size = 12, color = 'black')
+plt.savefig('Outputs\Extra\PetalRatioVsSepalRatio.png')
 plt.show()
 
 # 5. Extra
@@ -196,4 +197,8 @@ irisVirginicaSD = stdev(irisVirginica["PetalLength"])
 plt.scatter(irisSetosaMean, irisSetosaSD, color="cornflowerblue")
 plt.scatter(irisVersicolourMean, irisVersicolourSD, color= "mediumseagreen")
 plt.scatter(irisVirginicaMean, irisVirginicaSD, color= "firebrick")
+plt.title("MeanPetalLength Vs SDPetalLength", size = 20, color = 'black')
+plt.xlabel("MeanPetalLength", size = 12, color = 'black')
+plt.ylabel("SDPetalLength", size = 12, color = 'black')
+plt.savefig('Outputs\Extra\MeanPetalLengthVsSDPetalLength.png')
 plt.show()
