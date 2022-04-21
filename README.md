@@ -179,3 +179,4 @@ Nil
 5. Colours used for Histogram https://matplotlib.org/3.5.0/gallery/color/named_colors.html
 6. Creating subplots https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html
 7. How to get all pair combinations from a list https://www.geeksforgeeks.org/itertools-combinations-module-python-print-possible-combinations/
+8. How to iterate through columns in a database https://stackoverflow.com/questions/28218698/how-to-iterate-over-columns-of-pandas-dataframe-to-run-regression
