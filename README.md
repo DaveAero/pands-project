@@ -1,21 +1,21 @@
 # Programming and Scripting - Project
 
-This repository is my collection of work from the project as part of Programing and Scripting, Spring 2022.
+This repository is my collection of work from the project as part of Programming and Scripting, Spring 2022.
 The work in this repository is my own, and was completed as part of my programming and scripting module. 
 
 ## Description
-In this data analysis we will be examining the relationship between the lenth and width dimentions of petals and septals for 150 Iris plant and for each of the 3 sub classes, 1. Iris Setosa, 2. Iris Versicolour, 3. Iris Virginica.
+In this data analysis we will be examining the relationship between the length and width dimensions of petals and sepals for 150 Iris plant and for each of the 3 sub classes, 1. Iris Setosa, 2. Iris Versicolour, 3. Iris Virginica.
 
 ### Description of the Iris Database
-The database was created by R.A. Fisher in 1936, analysis.py is used to analyis Fisher's Iris Database using python. This database details 150 Iris flowers, split evenly into 3 sub species of Iris flower, Iris Setosa, Iris Versicolour & Iris Virginica. The database details 4 attributes for each flower, sepal length (cm), sepal width (cm), petal length (cm) & petal width (cm).
+The database was created by R.A. Fisher in 1936, analysis.py is used to analysis Fisher's Iris Database using python. This database details 150 Iris flowers, split evenly into 3 sub species of Iris flower, Iris Setosa, Iris Versicolour & Iris Virginica. The database details 4 attributes for each flower, sepal length (cm), sepal width (cm), petal length (cm) & petal width (cm).
 
-Sepals and Petals are found on flowering plants. I would think an petal is easy for all to visualise, this is the flowering leaf of a plant, which may have adopted attracting colours to distinguish itself such as the red rose petals or the yellow sunflower petals. The Sepal again is a part uniquie to flowering plants, the role of the sepal is to protect the delicate flowering petals until:
-  1. the plant is mature enought to flower.
-  2. the enviornmental conditions are sufficent for the plant to flower.
+Sepals and Petals are found on flowering plants. I would think an petal is easy for all to visualise, this is the flowering leaf of a plant, which may have adopted attracting colours to distinguish itself such as the red rose petals or the yellow sunflower petals. The Sepal again is a part unique to flowering plants, the role of the sepal is to protect the delicate flowering petals until:
+  1. the plant is mature enough to flower.
+  2. the environmental conditions are sufficient for the plant to flower.
 
 Think of flowering plants with a bud ready to burst to life with petals, the protective shell you see is made of these sepals. When the time comes and the flower opens to reveal the petals, the sepals pull back to allow the petals to open fully.
 
-The iris database comes with the following discription of the variable to confirm what attribute is in which column:
+The iris database comes with the following description of the variable to confirm what attribute is in which column:
 
 ```
 Attribute Information:
@@ -29,29 +29,29 @@ Attribute Information:
       -- Iris Virginica
 ```
 
-From this we know, column 1. to 4. contains data in cm. From a later test it was confirmed that these values are entered as floating point numbers. Column 5. contains the class of each flower, this column uses data type string.
+From this we know, column 1. to 4. contains data in cm. From a later test it was confirmed that these values are entered as floating-point numbers. Column 5. contains the class of each flower, this column uses data type string.
 
 ### Loading the Iris Database 
-The data is now available online free for download from the references below. The data comes in a file called iris.data, for this data analysis we will be loading this file into python. The .data file type can be loaded as a CSV (comma-separated values) using the pandas module in python. So it is important to first tell python we will be using this modual, by importing it like this:
+The data is now available online free for download from the references below. The data comes in a file called iris.data, for this data analysis we will be loading this file into python. The .data file type can be loaded as a CSV (comma-separated values) using the pandas module in python. So, it is important to first tell python we will be using this module, by importing it like this:
 
 ```
 import pandas as pd
 ```
 
-We can then use the read_csv function provided by the pandas modual, and save the database to a Python opject called irisData as so
+We can then use the read_csv function provided by the pandas module, and save the database to a P-thon object called irisData as so
 
 ```
 irisData =  pd.read_csv('data\iris.data')
 ```
 
-the database is now available for data analysis! when examing the database, it was noticed that the column names were not part of the database, from the very first line there was data entries. This can casue issues as python interperites this first line as being the column names for the data below. To fix this the column names can be manually assigned as the CSV file is being loaded. This can be done by adding another argument to the read_csv function called names, this is then followed by the list of column names to be used. The fuction for loading data then becomes:
+the database is now available for data analysis! when examining the database, it was noticed that the column names were not part of the database, from the very first line there was data entries. This can cause issues as python interprets this first line as being the column names for the data below. To fix this the column names can be manually assigned as the CSV file is being loaded. This can be done by adding another argument to the read_csv function called names, this is then followed by the list of column names to be used. The function for loading data then becomes:
 
 ```
 irisData =  pd.read_csv('data\iris.data', names=['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'FlowerClass'])
 ```
 It is important to note here, the column names are all defined as string values using the quotation marks.
 
-As I regularly found myself wanting to analyse each of the 3 sub class of iris flower, I found it was easier to creat individual pyhton objects for the data pertaining to each sub class. This was done using a logical test on the flower class column, the example I show is for the irisSetosa flower:
+As I regularly found myself wanting to analyse each of the 3-sub class of iris flower, I found it was easier to create individual python objects for the data pertaining to each sub class. This was done using a logical test on the flower class column, the example I show is for the irisSetosa flower:
 
 ```
 irisData['FlowerClass'] == "Iris-setosa"
@@ -72,18 +72,18 @@ data\iris.data
 ```
 
 ## Investigation into database
-the data analysis will take 2 approches on this database.
-  1. An analysis of the Iris plant specties to find trends accross all Iris plant variations
+the data analysis will take 2 approaches on this database.
+  1. An analysis of the Iris plant species to find trends across all Iris plant variations
   2. An analysis of each sub class of Iris plant, to find trends and identify areas where these plants differ. The 3 plant classes to be investigated are Iris Setosa, Iris Versicolor & Iris Virginica
 
 ### The first text analysis
-Text analysis is a very usefull tool to very quickly get an understanding of the database we are working with. The first test used was the head() function, this is used to see the top 5 rows of a database. The result of this can be printed to the command line to see the result. This simple test was carried out on all 4 of the databases now created (irisData, irisSetosa, irisVersicolour & irisVirginica). The complete function is writen as so:
+Text analysis is a very useful tool to very quickly get an understanding of the database we are working with. The first test used was the head() function, this is used to see the top 5 rows of a database. The result of this can be printed to the command line to see the result. This simple test was carried out on all 4 of the databases now created (irisData, irisSetosa, irisVersicolour & irisVirginica). The complete function is written as so:
 
 ```
 print(irisData.head())
 ```
 
-Now having confirmed the database is working correctly I moved to a more detailed analysis of the IrisData, for this I used the .describe() function. This gives some usefull info such as Min, Max, Mean & Standard Devistion for each variable. The output of this is then saved to a text file so it can be reviewed at a later date. Running this code and having confirmed that the .txt file was created as expected, with the result of the .describe() function, we can see a summary for the whole iris database. This summary can be seen below.
+Now having confirmed the database is working correctly I moved to a more detailed analysis of the IrisData, for this I used the .describe() function. This gives some useful info such as Min, Max, Mean & Standard Deviation for each variable. The output of this is then saved to a text file so it can be reviewed at a later date. Running this code and having confirmed that the .txt file was created as expected, with the result of the .describe() function, we can see a summary for the whole iris database. This summary can be seen below.
 
 Summary of Iris Data set.
 
@@ -106,51 +106,48 @@ min-----4.300000------2.000000------1.000000------0.100000
 max-----7.900000------4.400000------6.900000------2.500000
 ```
 
-I then set about adjusting the code used to become a function, so all 4 databases created could be passed through it in an efficent manner. The new function is called 4 times in the program, with each of the databases being passed through the describe() fuction and appended onto the text file. the result can be seen in Outputs\TextSummary\Analysis.txt
+I then set about adjusting the code used to become a function, so all 4 databases created could be passed through it in an efficient manner. The new function is called 4 times in the program, with each of the databases being passed through the describe() function and appended onto the text file. the result can be seen in Outputs\TextSummary\Analysis.txt
 
 ### Histogram Summaries
-The same metodology as the text file is used here, first I wrote code that created the a histogram I wanted. Then I ajusted this code to become a function, so all 4 variable can be analyised using the same code.
+The same methodology as the text file is used here, first I wrote code that created a histogram I wanted. Then I adjusted this code to become a function, so all 4 variables can be analysed using the same code.
 
-The histograms were created using the matplotlib module. Initally I created a histogram of the whole irisData database, but it was quickly evident that more information needed to be included in the histogram to distinguish each of the flower classes. To overcome this, first I adjusted the histogram code to plot each of the flower classes to the same histogram, coloring each of these differently so it can be easily visualised.
+The histograms were created using the matplotlib module. Initially I created a histogram of the whole irisData database, but it was quickly evident that more information needed to be included in the histogram to distinguish each of the flower classes. To overcome this, first I adjusted the histogram code to plot each of the flower classes to the same histogram, colouring each of these differently so it can be easily visualised.
 
-I then decided to to use subplots to show each of the flower classes in isolation beneath the histogram. To accomplish this 
-the upper subplot is given the input (2, 1, 1) to confirm there is 2 columns an 1 row which spans the full width, with this plot being on the upper row as the first plot. For the lower row the input was given as (2, 3, 4), meaning the histogram is sized to fit in 2 rows and 3 columbs, located in the 4th position which would make it the lower left. This was continued for the remaining two histograms on the lower row.
+I then decided to use subplots to show each of the flower classes in isolation beneath the histogram. To accomplish this 
+the upper subplot is given the input (2, 1, 1) to confirm there is 2 columns ans 1 row which spans the full width, with this plot being on the upper row as the first plot. For the lower row the input was given as (2, 3, 4), meaning the histogram is sized to fit in 2 rows and 3 columns, located in the 4th position which would make it the lower left. This was continued for the remaining two histograms on the lower row.
 
 ![](Outputs/Histograms/PetalLength.png)
 
-Confirming the histogram outputed as desired, I then saved this as a .jpeg using the matplotlib module. Having now wrote the code to output 1 histogram, I adjusted the code to become a function where each of the variables could be passed through the function to create a histogram that will be saved.
+Confirming the histogram outputted as desired, I then saved this as a .jpeg using the matplotlib module. Having now wrote the code to output 1 histogram, I adjusted the code to become a function where each of the variables could be passed through the function to create a histogram that will be saved.
 
 ### Scatter plots
-Having discovered the subplots were useful for the histograms, I decieded to keep the subplots for the scatter plots. Again I followed the followed the methodology of first creating a scatter plot of 2 vaiables. I then set about re-writing that code into a fuction which can be used to pass combinations of vairables through, making the code more efficent and easier to manage.
+Having discovered the subplots were useful for the histograms, I decided to keep the subplots for the scatter plots. Again, I followed the followed the methodology of first creating a scatter plot of 2 variables. I then set about re-writing that code into a function which can be used to pass combinations of variables through, making the code more efficient and easier to manage.
 
-Coloring each flower class the same as the histogram to keep continuity. I also chose to add a trend line to each of the classes of flower and to the irisData set as a whole, to help easily identify trends or differences. The resulting scatter plots are saved to a new folder within the outputs folder.
+Colouring each flower class the same as the histogram to keep continuity. I also chose to add a trend line to each of the classes of flower and to the irisData set as a whole, to help easily identify trends or differences. The resulting scatter plots are saved to a new folder within the outputs folder.
 
 ![](Outputs/ScatterPlots/PetalLengthVsPetalWidth.png)
 
-### Additional analytsis
-Finally
+### Additional analysis
+For extra analysis I decided to examine if there are any trends between these flowers in a metric, I am going to call the "petal Vs Sepal ratio". This ratio is achieved by getting the Petal ratio which is defined as the Length / Width and the Sepal ratio which is defined as the Sepal Length / Width.
 
+This petal ratio is then plotted against the sepal ratio for each group of entries for each flower. This results in the following graph
 
+![](Outputs/Extra/PetalRatioVsSepalRatio.png)
 
+I think this graph provides some interesting insight into how Iris Setosa differs from its fellow Iris plants the most.
 
+### Additional analysis
+Finally, I noticed in the text analysis that while the mean length of petals increased, so did the spread of the data which was evident in the increasing Standard Deviation size. to examine  this further i decided to graph the mean petal length VS the SD of the petal length for each of the 3 flower classes. to achieve this i used the mean() & stdev() functions provided by the statistic module. I first defined variable for each of the 3 flower classes using the statistic functions and then plotted these using the pandas module. this resulted in the following plot.
 
+![](Outputs/Extra/MeanPetalLengthVsSDPetalLength.png)
 
-
-
-
-
-
-
-
-
-
-
+This Graph  interestingly shows that the SD increases linearly with the mean petal length for the Irish plants.
 
 ## Getting Started
 ### Executing program
-the analysis.py program requires data from the iris.data database. This data base is availabe at: https://archive.ics.uci.edu/ml/datasets/iris. To use this database with the analysis.py program, the database should be saved in a folder titled "data", making the file path from the program "data\iris.data".
+the analysis.py program requires data from the iris.data database. This data base is available at: https://archive.ics.uci.edu/ml/datasets/iris. To use this database with the analysis.py program, the database should be saved in a folder titled "data", making the file path from the program "data\iris.data".
 
-Secondly folders must be created for the outputs. A folder must be created titled "Outputs" and 3 sub folders will be created within the Outputs folder. These are 1. "TextSummary" 2. "Histograms" 3. "ScatterPlots". This makes the 3 file paths as "Outputs\TextSummary\" "Outputs\Histograms\" "Outputs\ScatterPlots\", when the program is run, these folders will be populated with the associated data.
+Secondly folders must be created for the outputs. A folder must be created titled "Outputs" and 4 sub folders will be created within the Outputs folder. These are 1. "TextSummary" 2. "Histograms" 3. "ScatterPlots" 4. "Extra". This makes the 4 file paths as "Outputs\TextSummary\" "Outputs\Histograms\" "Outputs\ScatterPlots\" "Outputs\Extra", when the program is run, these folders will be populated with the associated data.
 
 ## Help
 
@@ -158,7 +155,7 @@ Email: G00411281@gmit.ie
 
 ## Authors
 
-Contributors names and contact info
+Contributors' names and contact info
 
 ex. David Burke
 ex. G00411281@gmit.ie
@@ -182,3 +179,4 @@ Nil
 8. How to iterate through columns in a database https://stackoverflow.com/questions/28218698/how-to-iterate-over-columns-of-pandas-dataframe-to-run-regression
 9. numpy.poly1d https://numpy.org/doc/stable/reference/generated/numpy.poly1d.html
 10. numpy.polyfit https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html
+11. Statistics module used https://docs.python.org/3/library/statistics.html
